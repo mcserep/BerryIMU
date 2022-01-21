@@ -1,0 +1,13 @@
+This program will enable your Raspberry Pi to read the values from a gyroscope and accelerometer and convert them to usable angles.
+The program also outputs the magnetometer data.
+
+Go here for more information;
+http://ozzmaker.com/berryimu/
+
+BerryIMUv1, BerryIMUv2 and BerryIMUv3 are supported.
+
+Compile with;
+gcc -o gyro_accelerometer_magnetometer -l rt gyro_accelerometer_magnetometer.c -lm
+
+To run;
+sudo ./gyro_accelerometer_magnetometer
