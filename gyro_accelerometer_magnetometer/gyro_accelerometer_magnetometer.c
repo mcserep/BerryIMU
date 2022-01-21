@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
   gettimeofday(&tvBegin, NULL);
 
   //printf("Loop Time 0\t");
-  printf("LoopTime,kalmanX,kalmanY,GyroX,AccXangle,CFangleX,GyroY,AccYangle,CFangleY,MagRawX,MagRawY,MagRawZ,Heading");
+  printf("LoopTime,kalmanX,kalmanY,GyroX,AccXangle,CFangleX,GyroY,AccYangle,CFangleY,MagRawX,MagRawY,MagRawZ,Heading\n");
   printf("0,");
   while(1)
   {
