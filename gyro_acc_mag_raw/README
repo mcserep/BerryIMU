@@ -1,0 +1,13 @@
+This program will enable your Raspberry Pi to read the raw values from the
+gyroscope, accelerometer and magnetometer sensors.
+
+Go here for more information;
+http://ozzmaker.com/berryimu/
+
+BerryIMUv1, BerryIMUv2 and BerryIMUv3 are supported.
+
+Compile with;
+gcc -o gyro_acc_mag_raw -l rt gyro_acc_mag_raw.c -lm
+
+To run;
+sudo ./gyro_acc_mag_raw
