@@ -7,7 +7,7 @@ http://ozzmaker.com/berryimu/
 BerryIMUv1, BerryIMUv2 and BerryIMUv3 are supported.
 
 Compile with;
-gcc -o gyro_accelerometer_magnetometer -l rt gyro_accelerometer_magnetometer.c -lm
+gcc -o gyro_acc_mag -l rt gyro_acc_mag.c -lm
 
 To run;
-sudo ./gyro_accelerometer_magnetometer
+sudo ./gyro_acc_mag
