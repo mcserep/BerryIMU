@@ -91,14 +91,14 @@ int main(int argc, char *argv[])
 
     if (!csv_output)
     {
-      printf(" GyroX %i \t GyroY %i \t GyroZ %i \t",rate_gyr_x,rate_gyr_y,rate_gyr_z);
+      printf(" GyroX %.3f \t GyroY %.3f \t GyroZ %.3f \t",rate_gyr_x,rate_gyr_y,rate_gyr_z);
       printf(" AccX %i \t AccY %i \t AccZ %i \t",accRaw[0],accRaw[1],accRaw[2]);
       printf(" MagX %i \t MagY %i \t MagZ %i \n",magRaw[0],magRaw[1],magRaw[2]);
     }
     else
     {
       printf("%.3f,%.3f,%.3f,",rate_gyr_x,rate_gyr_y,rate_gyr_z);
-      printf("%.3f,%.3f,%.3f,",accRaw[0],accRaw[1],accRaw[2]);
+      printf("%i,%i,%i,",accRaw[0],accRaw[1],accRaw[2]);
       printf("%i,%i,%i\n",magRaw[0],magRaw[1],magRaw[2]);
     }
 
