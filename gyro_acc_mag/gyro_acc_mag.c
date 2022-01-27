@@ -66,6 +66,10 @@ int timeval_subtract(struct timeval *result, struct timeval *t2, struct timeval 
 
 int main(int argc, char *argv[])
 {
+  int csv_output = 0;
+  if (argc > 1 && strcmp(argv[1],"--csv") == 0)
+    csv_output = 1;
+
   float rate_gyr_y = 0.0;   // [deg/s]
   float rate_gyr_x = 0.0;   // [deg/s]
   float rate_gyr_z = 0.0;   // [deg/s]
@@ -92,9 +96,13 @@ int main(int argc, char *argv[])
 
   gettimeofday(&tvBegin, NULL);
 
-  //printf("Loop Time 0\t");
-  printf("LoopTime,kalmanX,kalmanY,GyroX,AccXangle,CFangleX,GyroY,AccYangle,CFangleY,MagRawX,MagRawY,MagRawZ,Heading\n");
-  printf("0,");
+  if (!csv_output)
+    printf("Loop Time 0\t");
+  else
+  {
+    printf("LoopTime,kalmanX,kalmanY,GyroX,AccXangle,CFangleX,GyroY,AccYangle,CFangleY,MagRawX,MagRawY,MagRawZ,Heading\n");
+    printf("0,");
+  }
   while(1)
   {
     startInt = mymillis();
@@ -156,20 +164,28 @@ int main(int argc, char *argv[])
     if(heading < 0)
       heading += 360;
 
-    //printf(" GyroX  %7.3f \t AccXangle %7.3f \t \033[22;31mCFangleX %7.3f\033[0m\t",gyroXangle,AccXangle,CFangleX);
-    //printf(" GyroY  %7.3f \t AccYangle %7.3f \t \033[22;36mCFangleY %7.3f\033[0m\t",gyroYangle,AccYangle,CFangleY);
-    //printf(" MagRaw X %i \t MagRaw Y %i \t MagRaw Z %i \t Heading %7.3f \n",magRaw[0],magRaw[1],magRaw[2],heading);
-    printf("%.3f,%.3f,%.3f,",gyroXangle,AccXangle,CFangleX);
-    printf("%.3f,%.3f,%.3f,",gyroYangle,AccYangle,CFangleY);
-    printf("%i,%i,%i,%.3f\n",magRaw[0],magRaw[1],magRaw[2],heading);
+    if (!csv_output)
+    {
+      printf(" GyroX  %7.3f \t AccXangle %7.3f \t \033[22;31mCFangleX %7.3f\033[0m\t",gyroXangle,AccXangle,CFangleX);
+      printf(" GyroY  %7.3f \t AccYangle %7.3f \t \033[22;36mCFangleY %7.3f\033[0m\t",gyroYangle,AccYangle,CFangleY);
+      printf(" MagRaw X %i \t MagRaw Y %i \t MagRaw Z %i \t Heading %7.3f \n",magRaw[0],magRaw[1],magRaw[2],heading);
+    }
+    else
+    {
+      printf("%.3f,%.3f,%.3f,",gyroXangle,AccXangle,CFangleX);
+      printf("%.3f,%.3f,%.3f,",gyroYangle,AccYangle,CFangleY);
+      printf("%i,%i,%i,%.3f\n",magRaw[0],magRaw[1],magRaw[2],heading);
+    }
 
     //Each loop should be at least 20ms.
     while(mymillis() - startInt < (DT*1000)){
       usleep(100);
     }
 
-    //printf("Loop Time %d\t", mymillis()- startInt);
-    printf("%d,", mymillis()- startInt);
+    if (!csv_output)
+      printf("Loop Time %d\t", mymillis()- startInt);
+    else
+      printf("%d,", mymillis()- startInt);
   }
 }
 
